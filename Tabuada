@@ -93,7 +93,6 @@
             titulo.innerHTML = `Tabuada do ${numero}`;
             res.innerHTML = '';
 
-         
 
             if (numero == '') {
                 alert('Qual e o Numero?')
@@ -102,10 +101,17 @@
             } else {
 
                 for (var i = 0; i <= 10; i++) {
-                    let item = document.createElement('option');
-                    item.text=`${numero} X ${i}= ${Number(numero) * i}`;
+
                     res.innerHTML += `${numero} X ${i}= ${Number(numero) * i} \n`;
+
+                }
+                let c = 1;
+                while (c <= 10) {
+                    let item = document.createElement('option');
+                    item.text = `${numero} X ${c}= ${Number(numero) * c}`;
+                    item.value = `tab${c}`;
                     tab.appendChild(item);
+                    c++
                 }
             }
         }
