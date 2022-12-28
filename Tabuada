@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabuada</title>
+    <title>Super Contador</title>
     <style>
         body {
             background-color: rgb(56, 169, 177);
@@ -48,34 +48,34 @@
             padding-top: 20px;
 
         }
-
-        #titulo {
-            font-size: 20px;
-        }
-
-        #res {
-            text-align: center;
-        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Tabuada</h1>
+        <h1>Vamos Contar</h1>
     </header>
     <section>
         <div>
             <p>
-                <label for="numero">Numero:</label>
-                <input type="number" name="numero" id="numero" min="0">
-                <input type="button" value="Gerar Tabuada" onclick="contar()">
+                <label for="inicio">Inicio:</label>
+                <input type="number" name="inicio" id="inicio" min="0">
+            </p>
+            <p>
+                <label for="fim">Fim:</label>
+                <input type="number" name="passo" id="fim" min="0">
+            </p>
+            <p>
+                <label for="passo">Passo:</label>
+                <input type="number" name="passo" id="passo" min="0">
             </p>
 
+            <p>
+                <input type="button" value="contar" onclick="contar()">
+            </p>
         </div>
-        <div id="titulo"></div>
-        <div id="resultado">
-            <textarea name="" cols="12" rows="12" id="res" class=""></textarea>
-        </div>
+
+        <div id="resultado">Preparando para Contagem...</div>
 
     </section>
     <footer>&copy;MarceloValdemar</footer>
@@ -83,23 +83,42 @@
 
         function contar() {
 
-            var numero = document.getElementById('numero').value;
-            var titulo = document.getElementById('titulo');
-            var res = document.getElementById('res');
-            titulo.innerHTML = `Tabuada do ${numero}`;
-            res.innerHTML = '';
-            if (numero == '') {
-                alert('Qual e o Numero?')
-                titulo.innerHTML = 'Não foi possivel gerar!';
 
-            } else {
-                // alert(numero.value);
+            var inicio = Number(document.getElementById('inicio').value);
+            var fim = Number(document.getElementById('fim').value);
+            var passo = Number(document.getElementById('passo').value);
+            var res = document.getElementById('resultado');
 
-                for (var i = 0; i <= 10; i++) {
-                    res.innerHTML += ` ${numero} X ${i} = ${Number(numero) * i} \n`;
-                }
+            var g = 'Contador: ';
+            if (inicio == '' || fim == '') {
+
+                res.innerHTML = 'Impossivel Calcular!!';
+
+            } else if (passo <= 0) {
+                alert('Passo Invalido, considere PASSO iniciando em 1!!');
+
             }
+            else {
+                //crescente
+                if (inicio < fim) {
+
+                    for (var i = inicio; i <= fim; i += passo) {
+                        g += i + ' \u{1F449} ';//' 👉 ';//\u{}
+
+                    }
+                    //descrecente
+                } else {
+                    for (var i = inicio; i >= fim; i -= passo) {
+                        g += i + ' \u{1F449} ';//' 👉 ';//\u{}
+
+                    }
+
+                }
+                res.innerHTML = g + ' \u{1F3C1}';//'🚩';
+            }
+
         }
+
 
     </script>
 
